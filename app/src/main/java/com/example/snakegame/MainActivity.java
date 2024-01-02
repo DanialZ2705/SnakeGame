@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.DialogTitle;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -18,6 +19,7 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -59,57 +61,71 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder, Su
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        //getting surfaceView and scoreTV from xml file
-        surfaceView = findViewById(R.id.surfaceView);
-        scoreTV = findViewById(R.id.scoreTV);
+        // Set the initial content view to start_game layout
+        setContentView(R.layout.start_game);
 
-        //getting imageBtn from xml file
-        final AppCompatImageButton topBtn = findViewById(R.id.topBtn);
-        final AppCompatImageButton bottomBtn = findViewById(R.id.bottomBtn);
-        final AppCompatImageButton rightBtn = findViewById(R.id.rightBtn);
-        final AppCompatImageButton leftBtn = findViewById(R.id.leftBtn);
+        // Getting the start button from XML
+        ImageView startButton = findViewById(R.id.startImage);
 
-        //add callback to surfaceview
-        surfaceView.getHolder().addCallback(this);
-
-        topBtn.setOnClickListener(new View.OnClickListener() {
+        // Set click listener for the start button
+        startButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                // Update movingPosition to "top" when the top button is clicked
-                movingPosition = "top";
-                Log.d("UserInput", "Top button clicked. MovingPosition: " + movingPosition);
-            }
-        });
+            public void onClick(View v) {
+                // Switch to the main activity layout
+                setContentView(R.layout.activity_main);
 
-        bottomBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Update movingPosition to "bottom" when the bottom button is clicked
-                movingPosition = "bottom";
-                Log.d("UserInput", "Bottom button clicked. MovingPosition: " + movingPosition);
-            }
-        });
+                // Initialize UI components from activity_main.xml
+                surfaceView = findViewById(R.id.surfaceView);
+                scoreTV = findViewById(R.id.scoreTV);
+                final AppCompatImageButton topBtn = findViewById(R.id.topBtn);
+                final AppCompatImageButton bottomBtn = findViewById(R.id.bottomBtn);
+                final AppCompatImageButton rightBtn = findViewById(R.id.rightBtn);
+                final AppCompatImageButton leftBtn = findViewById(R.id.leftBtn);
 
-        rightBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Update movingPosition to "right" when the right button is clicked
-                movingPosition = "right";
-                Log.d("UserInput", "Right button clicked. MovingPosition: " + movingPosition);
-            }
-        });
+                // Add callback to surfaceView
+                surfaceView.getHolder().addCallback(MainActivity.this);
 
-        leftBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Update movingPosition to "left" when the left button is clicked
-                movingPosition = "left";
-                Log.d("UserInput", "Left button clicked. MovingPosition: " + movingPosition);
+                // Set click listeners for buttons
+                topBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Update movingPosition to "top" when the top button is clicked
+                        movingPosition = "top";
+                        Log.d("UserInput", "Top button clicked. MovingPosition: " + movingPosition);
+                    }
+                });
+
+                bottomBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Update movingPosition to "bottom" when the bottom button is clicked
+                        movingPosition = "bottom";
+                        Log.d("UserInput", "Bottom button clicked. MovingPosition: " + movingPosition);
+                    }
+                });
+
+                rightBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Update movingPosition to "right" when the right button is clicked
+                        movingPosition = "right";
+                        Log.d("UserInput", "Right button clicked. MovingPosition: " + movingPosition);
+                    }
+                });
+
+                leftBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Update movingPosition to "left" when the left button is clicked
+                        movingPosition = "left";
+                        Log.d("UserInput", "Left button clicked. MovingPosition: " + movingPosition);
+                    }
+                });
             }
         });
     }
+
 
     @Override
     public void addCallback(Callback callback) {
