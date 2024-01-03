@@ -4,10 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.DialogTitle;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -73,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder, Su
             @Override
             public void onClick(View v) {
                 // Switch to the main activity layout
-                setContentView(R.layout.activity_main);
+                setContentView(R.layout.activity_game_page);
 
                 // Initialize UI components from activity_main.xml
                 surfaceView = findViewById(R.id.surfaceView);
