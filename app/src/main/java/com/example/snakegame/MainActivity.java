@@ -210,24 +210,24 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder, Su
 
     }
     private void initiate(){
-       //clear points
-       snakePointsList.clear();
-       scoreTV.setText("0");
-       score = 0;
-       movingPosition = "right";
-       int startPositionX = (pointSize) * defaultTalePoints;
+        //clear points
+        snakePointsList.clear();
+        scoreTV.setText("0");
+        score = 0;
+        movingPosition = "right";
+        int startPositionX = (pointSize) * defaultTalePoints;
 
-       for(int i = 0; i < defaultTalePoints; i++){
-           SnakePoints snakePoints = new SnakePoints(startPositionX, pointSize);
-           snakePointsList.add(snakePoints);
+        for(int i = 0; i < defaultTalePoints; i++){
+            SnakePoints snakePoints = new SnakePoints(startPositionX, pointSize);
+            snakePointsList.add(snakePoints);
 
-           startPositionX = startPositionX - (pointSize * 2);
-       }
+            startPositionX = startPositionX - (pointSize * 2);
+        }
 
-       //add random pointer/food
+        //add random pointer/food
         addPoint();
 
-       //snake start moving
+        //snake start moving
         moveSnake();
 
     }
